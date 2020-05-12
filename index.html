@@ -4,15 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Binge Roulette</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.css" type="text/css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Binge Roulette</h1>
-  </header>
+  <main class="container">
+    <header>
+      <h1>Binge Roulette</h1>
+    </header>
 
-  <form action="">
-    <label for="title">Movie Title: </label>
-    <input type="text" id="title" name="title">
-  </form>
+    <form action="" class="col-4 movie-form">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fas fa-film"></i>
+          </span>
+        </div>
+        <input type="text" class="form-control" placeholder="Movie Title" aria-describedby="basic-addon1">
+      </div>
+    </form>
+  </main>
+
 </body>
 </html>
