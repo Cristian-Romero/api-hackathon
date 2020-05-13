@@ -6,3 +6,7 @@ header > h1 {
   margin-left: auto;
   margin-right: auto;
 }
+
+.movie-info-row {
+  margin-top: 15px;
+}
