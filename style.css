@@ -10,3 +10,7 @@ header > h1 {
 .movie-info-row {
   margin-top: 15px;
 }
+
+.movie-poster-border {
+  border: 1px solid black;
+}
