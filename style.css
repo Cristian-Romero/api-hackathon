@@ -1,5 +1,18 @@
+@font-face {
+  src: url(Fonts/BebasNeue.otf);
+  font-family: 'Netflix';
+}
+
+body {
+  background-image: url(Images/ticket.jpg);
+  background-repeat: no-repeat;
+}
+
 header > h1 {
   text-align: center;
+  font-family: 'Netflix', sans-serif;
+  font-size: 6rem;
+  color: white;
 }
 
 .movie-form {
@@ -13,4 +26,21 @@ header > h1 {
 
 .movie-poster-border {
   border: 1px solid black;
+}
+
+aside > p {
+  color: white;
+}
+
+article > p {
+  color: white;
+}
+
+article > h4 {
+  color: white;
+}
+
+iframe {
+  width: 400px;
+  height: 250px;
 }
