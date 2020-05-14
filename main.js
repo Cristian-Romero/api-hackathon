@@ -28,9 +28,10 @@ function getGenreValue(event) {
 function getMovieInfo(data) {
   console.log(data);
   console.log(data.results);
-  console.log(movieInfoResults);
 
   var movieInfoResults = data.results[randomMovieFromPage];
+  console.log(movieInfoResults);
+  var randomMovieId = movieInfoResults.id;
   if (movieInfoResults.poster_path === null) {
     var noMoviePoster = document.createElement('p');
     noMoviePoster.textContent = 'Sorry, there is no poster for this movie';
@@ -42,7 +43,6 @@ function getMovieInfo(data) {
     showMoviePoster.classList.add('movie-poster-border');
     asideEl.append(showMoviePoster);
   }
-  // var moviePoster = "http://image.tmdb.org/t/p/w185/" + movieInfoResults.poster_path;
 
   var showMovieTitle = document.createElement('p');
   var showMoviePlot = document.createElement('p');
@@ -55,6 +55,7 @@ function getMovieInfo(data) {
   articleEl.append(showMovieTitle, showMovieReleaseDate, showMoviePlot);
 
   getRatings(movieInfoResults.title);
+  getTrailerInfo(randomMovieId);
 }
 
 //Get imdb Rating
@@ -82,4 +83,35 @@ function getImdbRating(data) {
   showMovieRating.textContent = imdbRating.Source + ': ' + imdbRating.Value;
 
   articleEl.append(ratingsHeader ,showMovieRating);
+}
+
+
+// Create section for movie trailer
+function getTrailerInfo(movieID) {
+  $.ajax({
+    method: "GET",
+    url: "https://api.themoviedb.org/3/movie/" + movieID + "/videos?api_key=" + tmdbKey,
+    success: function(data) {
+      moviePreview(data);
+    },
+    error: function(error) {
+      console.error(error);
+    }
+  })
+}
+
+function moviePreview(data) {
+  var movieTrailer = data.results;
+  var movieTrailerKey = movieTrailer[0].key;
+  console.log(movieTrailer);
+  console.log(movieTrailer.length);
+  if (movieTrailer.length === 0) {
+    var noMovieTrailer = document.createElement('p');
+    noMovieTrailer.textContent = "Sorry! There's no movie trailer!";
+    articleEl.append(noMovieTrailer);
+  } else {
+    var showMovieTrailer = document.createElement('iframe');
+    showMovieTrailer.src = "https://www.youtube.com/embed/" + movieTrailerKey;
+    articleEl.append(showMovieTrailer);
+  }
 }
