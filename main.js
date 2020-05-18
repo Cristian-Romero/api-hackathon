@@ -26,11 +26,7 @@ function getGenreValue(event) {
 
 //Get movie title, release date, plot and poster
 function getMovieInfo(data) {
-  console.log(data);
-  console.log(data.results);
-
   var movieInfoResults = data.results[randomMovieFromPage];
-  console.log(movieInfoResults);
   var randomMovieId = movieInfoResults.id;
   if (movieInfoResults.poster_path === null) {
     var noMoviePoster = document.createElement('p');
@@ -73,7 +69,6 @@ function getRatings(movieName) {
 }
 
 function getImdbRating(data) {
-  console.log(data);
   var imdbRating = data.Ratings[0];
 
   var ratingsHeader = document.createElement('h4');
@@ -101,15 +96,16 @@ function getTrailerInfo(movieID) {
 }
 
 function moviePreview(data) {
+  console.log(data);
   var movieTrailer = data.results;
-  var movieTrailerKey = movieTrailer[0].key;
   console.log(movieTrailer);
   console.log(movieTrailer.length);
-  if (movieTrailer.length === 0) {
-    var noMovieTrailer = document.createElement('p');
-    noMovieTrailer.textContent = "Sorry! There's no movie trailer!";
-    articleEl.append(noMovieTrailer);
+  if (!movieTrailer.length) {
+    var noTrailer = document.createElement('p');
+    noTrailer.textContent = "Sorry! There's no movie trailer!";
+    articleEl.append(noTrailer);
   } else {
+    var movieTrailerKey = movieTrailer[0].key;
     var showMovieTrailer = document.createElement('iframe');
     showMovieTrailer.src = "https://www.youtube.com/embed/" + movieTrailerKey;
     articleEl.append(showMovieTrailer);
