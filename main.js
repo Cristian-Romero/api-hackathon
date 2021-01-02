@@ -3,8 +3,25 @@ var asideEl = document.querySelector('aside');
 var articleEl = document.querySelector('article');
 var randomPage = Math.floor(Math.random() * 500) + 1;
 var randomMovieFromPage = Math.floor(Math.random() * 19) + 1;
+var selectEl = document.getElementById("genreOptions");
 
-subButt.addEventListener('click', getGenreValue);
+selectEl.onchange = noSubmitButton;
+window.onload = noSubmitButton;
+
+subButt.addEventListener("click", getGenreValue);
+
+function noSubmitButton() {
+  var genreSelected = selectEl.options[selectEl.selectedIndex].value;
+  console.log(genreSelected);
+  if (genreSelected === "None") {
+    subButt.disabled = true;
+    console.log(genreSelected);
+    console.log("Cannot hit the button!");
+  } else {
+    console.log("Can hit the button!");
+    subButt.disabled = false;
+  }
+}
 
 //Get movies by genre
 function getGenreValue(event) {
@@ -15,13 +32,10 @@ function getGenreValue(event) {
   $.ajax({
     method: "GET",
     url: "https://api.themoviedb.org/3/discover/movie?api_key=" + tmdbKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&region=US&page=" + randomPage + "&with_genres=" + genreID,
-    success: function(data) {
-      getMovieInfo(data);
-    },
-    error: function(error) {
-      console.error(error);
-    }
+    success: getMovieInfo,
+    error: console.error()
   })
+  subButt.disabled = true;
 }
 
 //Get movie title, release date, plot and poster
@@ -96,10 +110,7 @@ function getTrailerInfo(movieID) {
 }
 
 function moviePreview(data) {
-  console.log(data);
   var movieTrailer = data.results;
-  console.log(movieTrailer);
-  console.log(movieTrailer.length);
   if (!movieTrailer.length) {
     var noTrailer = document.createElement('p');
     noTrailer.textContent = "Sorry! There's no movie trailer!";
