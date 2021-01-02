@@ -30,7 +30,7 @@ function getGenreValue(event) {
     success: getMovieInfo,
     error: console.error()
   })
-  subButt.disabled = true;
+  // subButt.disabled = true;
 }
 
 //Get movie title, release date, plot and poster
