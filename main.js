@@ -12,21 +12,16 @@ subButt.addEventListener("click", getGenreValue);
 
 function noSubmitButton() {
   var genreSelected = selectEl.options[selectEl.selectedIndex].value;
-  console.log(genreSelected);
   if (genreSelected === "None") {
     subButt.disabled = true;
-    console.log(genreSelected);
-    console.log("Cannot hit the button!");
   } else {
-    console.log("Can hit the button!");
     subButt.disabled = false;
   }
 }
 
 //Get movies by genre
 function getGenreValue(event) {
-  var dropDown = document.getElementById('genreOptions');
-  var genreID = dropDown.options[dropDown.selectedIndex].value;
+  var genreID = selectEl.options[selectEl.selectedIndex].value;
   event.preventDefault();
 
   $.ajax({
