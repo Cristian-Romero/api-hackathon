@@ -31,6 +31,7 @@ function getGenreValue(event) {
     error: console.error()
   })
   // subButt.disabled = true;
+  subButt.textContent = "SPIN AGAIN";
 }
 
 //Get movie title, release date, plot and poster
