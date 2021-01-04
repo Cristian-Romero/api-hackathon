@@ -28,6 +28,20 @@ header > h1 {
   border: 1px solid black;
 }
 
+.check-boxes-container {
+  width: 100%;
+}
+
+.check-boxes {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.check-boxes > label {
+  color: white;
+  margin-bottom: 0;
+}
+
 aside > p {
   color: white;
 }
